@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
+//comentario
 BMPImage *image;
 
 void display() {
@@ -12,20 +13,30 @@ void display() {
   glFlush();
 }
 
-int main() {
-  char filename[256];
+int main(int argc, char* argv[]) {
+  //char filename[256];
+	/*
+	argv[0] = ./bmpReaer
+       	argv[1] = image.bmp	
+	 */	
+	if(argc != 2)
+	{
+		printf("No suficientes Argumentos.\n");
+		exit(-1);
+	}
 
   // Pedir al usuario el nombre del archivo BMP
-  printf("Ingrese el nombre del archivo BMP (con extensión): ");
-  scanf("%255s", filename);
+  //printf("Ingrese el nombre del archivo BMP (con extensión): ");
+  //scanf("%255s", filename);
 
-  image = readBMP(filename);
+  image = readBMP(argv[1]);
+
   if (!image) return 1;
 
   // Inicializar GLUT
-  int argc = 1; // Necesario para evitar problemas con glutInit
-  char *argv[1] = { "" }; // Argumento vacío para GLUT
-  glutInit(&argc, argv);
+  int argcA = 1; // Necesario para evitar problemas con glutInit
+  char *argvA[1] = { "" }; // Argumento vacío para GLUT
+  glutInit(&argcA, argvA);
 
   // Establecer el modo de visualización
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
